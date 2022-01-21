@@ -1,0 +1,368 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0056)http://www.cerc.utexas.edu/itc99-benchmarks/bendoc1.html -->
+<HTML><HEAD><TITLE>ITC'99 Benchmark Documentation</TITLE>
+<META content="text/html; charset=iso-8859-1" http-equiv=Content-Type>
+<META content="SCOTT DAVIDSON" name=Author>
+<META content="MSHTML 5.00.3315.2870" name=GENERATOR></HEAD>
+<BODY>
+<H1>
+<CENTER>Notes on ITC'99 Benchmarks</CENTER></H1>
+<H2>
+<CENTER>Scott Davidson</CENTER></H2>
+<P>
+<P>These notes constitute the publicly available information on the ISCAS'99 
+benchmarks. Note that several of the benchmarks come from companies that do not 
+want their identities known. 
+<P>Where the benchmarks are publicly available, I give a link to the appropriate 
+website. This is for informational purposes only - the benchmarks should be 
+taken from the ITC'99 Benchmark website so that there is control of the versions 
+used. 
+<P>Direct questions about the benchmarks to me (<A 
+href="mailto:scott.davidson@eng.sun.com">scott.davidson@eng.sun.com</A>). I will 
+answer what I can. The donors do not wish to support these designs, and I have 
+no special knowledge of their internals. 
+<P>Some of these measures are rough. The exact number of gates is not very 
+important when dealing with large circuits. Since many of the designs are 
+expressed in terms of cells, the gate count will always be approximate, and will 
+depend on the library used. 
+<P>
+<P>
+<H2>Naming Conventions</H2>
+<P>I use the convention I99<TAG> to name the designs. The tag will give some 
+indication of the type of design. 
+<P>I99<N> means ASIC or other IC designs. 
+<P>I99T<N> means the set of benchmarks from Politecnico Torino. The <N>refers to 
+their numbering system. 
+<P>I99S<N> refers to the RTL version of the ISCAS89 benchmarks created by the 
+University of Michigan. <N>here stands for the numbering from ISCAS89. Other 
+interesting but simple sequential benchmarks will be assigned numbers in this 
+sequence. 
+<P>I99C<N> stands for potentially interesting combinational circuits. One from 
+industry is provided in the initial release. 
+<P>As of March 1999 not all of these circuits have been checked out. I am hoping 
+for assistance from universities for this effort. 
+<P>
+<HR>
+
+<H2>THE BENCHMARKS</H2>
+<P>
+<H3>I991:</H3>This is a 5 - 6k Gate design, with 2 phase latches. The library is 
+built out of simple primitives (NAND, nor, latches, etc.) and should be easy to 
+model. There are no internal memories. 
+<P>No scan is included in this design. 
+<P>
+<UL>
+  <LI>Inputs: 120 
+  <LI>outputs: 250 
+  <LI>inouts: 14 </LI></UL>
+<P>Language: Structural verilog 
+<P>Note: There is a 5 input mux driven by complementary enables. This is reputed 
+to be fun to test. 
+<P>
+<HR>
+
+<H3>I992:</H3>This is a pipeline ASIC of approximately 20,000 gates. It is an 
+industrial design. The DFT strategy is ad hoc, there is no scan included. 
+<P>The design uses a four phase clock. There are also several internal tristate 
+busses. There are no internal memories. 
+<P>The LSI Logic library was used, but a verilog library for all cells used is 
+included. 
+<P>A testbench and a test vector set exist for the design, and is available. 
+<P>
+<UL>
+  <LI>Inputs: 31 
+  <LI>Inouts: 176 
+  <LI>Outputs: 88 </LI></UL>Language: structural verilog. 
+<P>Status: ready for release. 
+<P>
+<HR>
+
+<P>
+<H3>I993:</H3>This is an industrial ASIC, and includes embedded memories. It is 
+represented in structural verilog, and uses the Mitsubishi library. 
+<P>There are also several clock domains in this design. 
+<P>This benchmark needs work, and is not yet ready for release. 
+<P>
+<UL>
+  <LI>Inputs: 72 
+  <LI>Outputs: 32 
+  <LI>Inouts: 30 </LI></UL>
+<P>
+<HR>
+
+<P>
+<H3>I994 - The Torch Processor:</H3>
+<P>(see: <A 
+href="http://www-flash.stanford.edu/torch/">http://www-flash.Stanford.EDU/torch/</A> 
+) 
+<P>Torch is an experimental superscalar microprocessor architecture, developed 
+at Stanford. 
+<P>Torch includes two integer execution units, a six-port register file, a 
+floating point unit with register file, and instruction and data caches. 
+<P>The processor is described in Verilog at the RTL level. I believe this 
+processor was used as a simulation benchmark by a trade journal (I think ISD). 
+<P>Layout information appears to be included, though I am not an expert and do 
+not know the extent of the information. 
+<P>I do not know the gatecount. However, this is a benchmark of significant size 
+and complexity, implementing a superset of the MIPS R2000/R3000 instruction set. 
+
+<P>A set of test vectors and simulators are included. VCS was used for the 
+simulation. 
+<P>No scan is included. 
+<P>Status: 
+<P>Ready to be downloaded, as there are no proprietary information issues. 
+However, we need someone to produce a baseline gate level implementation. 
+However, this seems an excellent test case for RTL level tools, as there are 
+many RTL level modules to work on, including, at the top level: 
+<P>
+<UL>
+  <LI>cp0: Co-processor 0 
+  <LI>decexec: Execution Unit 
+  <LI>extint: External Interface 
+  <LI>fp: Floating Point Unit 
+  <LI>ifetch: Fetcher/Instruction Cache 
+  <LI>ldsto: Load Store Unit 
+  <LI>regfile: Register File 
+  <LI>system: Top level module including the L2 cache and a gate array to 
+  service non-cacheable requests and magical locations. </LI></UL>
+<P>
+<HR>
+
+<P>
+<H3>I995 - CMU DSP: </H3>
+<P>The CMU DSP is a DSP modeled after the Motorola DSP56002 processor. Some 
+features have been removed to make it not commercially viable. 
+<P>The CMU DSP is available in structural Verilog, and in a partially functional 
+behavioral level Verilog. There is a gate level version also, synthesized from 
+the structural RTL. This last has not been thoroughly verified yet, but it 
+should be more than adequate for test work. Test vectors are included also. The 
+distributors of this benchmark are sure that there are at least a few bugs left 
+in the design. 
+<P>The CMU DSP does have scan inserted in the structural Verilog. We will need a 
+volunteer to remove it. 
+<P>The CMU DSP is available at: <A 
+href="http://www.ece.cmu.edu/~lowpower/benchmarks.html">http://www.ece.cmu.edu/~lowpower/benchmarks.html</A> 
+
+<P>A <A href="http://www.eda.org/benchmrk/Schmit.pdf">presentation</A> on the 
+CMU DSP is also available. 
+<P>This includes the documentation, which will be also available on the 
+benchmark website. Since we will be modifying the benchmark, and because the CMU 
+version is still in progress, benchmarkers should use the version on the ITC99 
+Benchmark website. 
+<P>The gate count is approx. 14,550. It has internal memories, and data and 
+control paths, and thus is a realistic design. 
+<P>Version 1.0 was due in December, but the documentation has not been updated 
+since November, and is incomplete. 
+<P>Status: 
+<P>The code is freely available from the web site, and can be looked at before 
+the ITC'99 benchmarks are released. Unfortunately a proprietary library is used 
+in the RTL (Epoch), and we must see if we can technology map to our standard 
+library. 
+<P>
+<HR>
+
+<H3>I99T&lt;1-22&gt; - Torino Benchmarks: </H3>
+<P>(Information available on the ITC'99 benchmark site.) 
+<P>These consist of 22 RTL level sequential benchmarks, ranging from 45 gates 
+and 5 FFs to 98,000 gates and 6600 flip-flops. Some of the larger benchmarks are 
+composed of several of the smaller benchmarks connected together. They are all 
+simple in the sense of being single clock designs, without internal memory or 
+tristate busses. 
+<P>They are useful in testing core ATPG algorithms on larger designs. 
+<P>A table of these benchmarks, and supporting documentation, appear below: 
+<P><PRE>      +-------+------+----+----+-------------+----------+---+
+      | gates | #FF  | PI | PO | #VHDL lines | #process |   |
++-----+-------+------+----+----+-------------+----------+---+
+| b01 |    45 |    5 |  4 |  2 |     110     |     1    | r | 4_10 (9293)
++-----+-------+------+----+----+-------------+----------+---+
+| b02 |    25 |    4 |  3 |  1 |      70     |     1    | r | 4_isbcd (9293)
++-----+-------+------+----+----+-------------+----------+---+
+| b03 |   150 |   30 |  6 |  4 |     141     |     1    | r | arbitro (9293)
++-----+-------+------+----+----+-------------+----------+---+
+| b04 |   480 |   66 | 13 |  8 |      80     |     1    | r | minmax (9394)
++-----+-------+------+----+----+-------------+----------+---+
+| b05 |   608 |   34 |  3 | 36 |     319     |     3    | r | elab_ram (9293)
++-----+-------+------+----+----+-------------+----------+---+
+| b06 |    66 |    9 |  4 |  6 |     128     |     1    | r | gest_int (9293)
++-----+-------+------+----+----+-------------+----------+---+
+| b07 |   382 |   51 |  3 |  8 |      92     |     1    | r | retta (9293)
++-----+-------+------+----+----+-------------+----------+---+
+| b08 |   168 |   21 | 11 |  4 |      89     |     1    | r | ric_incl (9293)
++-----+-------+------+----+----+-------------+----------+---+
+| b09 |   131 |   28 |  3 |  1 |     103     |     1    | r | 67246 (9495)
++-----+-------+------+----+----+-------------+----------+---+
+| b10 |   172 |   17 | 13 |  6 |     167     |     1    | s | ostraco (9495)
++-----+-------+------+----+----+-------------+----------+---+
+| b11 |   366 |   30 |  9 |  6 |     110     |     1    | r | 77449 (9596)
++-----+-------+------+----+----+-------------+----------+---+
+| b12 |  1000 |  121 |  7 |  6 |     567     |     4    | s | simon (9596)
++-----+-------+------+----+----+-------------+----------+---+
+| b13 |   309 |   53 | 12 | 10 |     296     |     5    | s | meteo (9495)
++-----+-------+------+----+----+-------------+----------+---+
+| b14 |  3461 |  247 | 34 | 54 |     518     |     1    | f | viper
++-----+-------+------+----+----+-------------+----------+---+
+| b15 |  6931 |  447 | 37 | 70 |     648     |     3    | f | 80386
++-----+-------+------+----+----+-------------+----------+---+--------
+|     |    30 |    4 |  5 |    |             |     4    |   | 4_2
+|     +-------+------+----+    |             +----------+   |
+|     |    35 |    4 | 11 |    |             |     4    |   | 4_2_e
+|     +-------+------+----+    |             +----------+   |
+|     |    57 |    8 |  6 |    |             |     8    |   | 8_3
+|     +-------+------+----+    |             +----------+   |
+|     |    78 |    8 | 27 |    |             |     8    |   | 8_3_e
+|     +-------+------+----+    |             +----------+   |
+|     |   106 |   16 |  7 |    |             |    16    |   | 16_4
+|     +-------+------+----+    |             +----------+   |
+|     |   170 |   16 | 67 |    |             |    16    |   | 16_4_e
+|     +-------+------+----+    |             +----------+   |
+|     |   140 |   16 |  7 |    |             |    16    |   | 16_4n
+|     +-------+------+----+    |             +----------+   |
+| b16 |   147 |   16 |  8 |  1 |      68 @   |    16    | n | 16_5n
+|     +-------+------+----+    |             +----------+   |
+|     |   123 |   20 |  7 |    |             |    20    |   | 20_4
+|     +-------+------+----+    |             +----------+   |
+|     |   211 |   20 | 83 |    |             |    20    |   | 20_4_e
+|     +-------+------+----+    |             +----------+   |
+|     |   169 |   20 |  9 |    |             |    20    |   | 20_6n
+|     +-------+------+----+    |             +----------+   |
+|     |   180 |   26 | 11 |    |             |    26    |   | 26_8
+|     +-------+------+----+    |             +----------+   |
+|     |   249 |   28 | 11 |    |             |    28    |   | 28_8n
+|     +-------+------+----+    |             +----------+   |
+|     |   197 |   28 | 19 |    |             |    28    |   | 28_16
+|     +-------+------+----+    |             +----------+   |
+|     |   233 |   30 | 33 |    |             |    30    |   | 30_30
+|     +-------+------+----+    |             +----------+   |
+|     |   508 |   64 | 19 |    |             |    64    |   | 64_16n
++-----+-------+------+----+----+-------------+----------+---+
+| b17 | 21191 | 1407 | 38 | 97 |     135 *   |     6    | n |
++-----+-------+------+----+----+-------------+----------+---+
+| b18 | 49293 | 3308 | 37 | 30 |      94 *   |     1    | n |
++-----+-------+------+----+----+-------------+----------+---+
+| b19 | 98726 | 6618 | 47 | 40 |      65 *   |     2    | n |
++-----+-------+------+----+----+-------------+----------+---+
+| b20 |  7741 |  494 | 34 | 22 |    1040     |     3    | n |
++-----+-------+------+----+----+-------------+----------+---+
+| b21 |  7931 |  494 | 34 | 22 |      63 *   |     1    | n |
++-----+-------+------+----+----+-------------+----------+---+
+| b22 | 12128 |  709 | 34 | 22 |    1547     |     4    | n |
++-----+-------+------+----+----+-------------+----------+---+
+							  |
+@ uses generate						  &gt;- r : reti
+* uses components					  &gt;- s : spa
+							  &gt;- f : ftp
+							  &gt;- n : new
+
+<PRE><P>
+<H4>Notes:</H4>
+<BR>
+<B> B16</B>
+<P>
+'b16' is a multiple benchmark where the general structure is a shift register.
+The basic cell is a D flip flop (i) that may be loaded with the value from
+the i-1 flip flop ('pi' if i=0) like a common shift register if 'sel'
+assumes a particular value. In 'n' benchmarks (e.g. 16_4n), the flip flop may
+be loaded with the value of the last flip flop in the chain with another 'sel'
+value to obtain an 'X' loading. For the others combinations of 'sel' the flip
+flop maintains its value.
+The circuits structure is one of the following:
+<P>
+ a. N_M
+<BR>
+ b. N_M_e
+<BR>
+ c. N_Mn
+<P>
+where N is the number of cells (flip flop) in the chain and M is the number of
+wires for 'sel'. In the first and in the third case, the same 'sel' bus is 
+shared by all the cells, while in the second case every cell has its own 'sel'
+bus.
+<P>
+ <B>B17</B>
+<P>
+'b17' is the first benchmark built up by interconnecting smaller circuits to
+obtain benchmarks with a certain dimension.
+<P>
+'b17' is composed by 3 'b15' communicating each other by two data register. The
+first and the third also communicate with the external world.
+<P>
+<B>B18</B>
+<P>
+'b18' is composed by 2 'b14' and 2 'b17'. Two groups b17-b14 are cross connected
+on datapath. The 2 b17-datain are the 2 b14-dataout mixed with the b18-datain.
+The address buses are mixed by mux and xor ports to the b18-dataout.
+<P>
+<B>B19</B>
+<P>
+'b19' is composed by 2 'b18' cross connected on datain-dataout buses. The input
+is mixed with internal buses to obtain the 'b18' inputs. The output is the mix
+of the 'b18' outputs.
+<P>
+<B>B20</B>
+<P>
+'b20' contains two not completely identical copies of the process in 'b14'.
+The minimal differences are some swap between '+' and '-' and some swap
+between choices in cases. In this way, the 2 processes generate different
+netlists after the synthesis.
+<P>
+<B>B21</B>
+<P>
+'b21' follows the same philosophy of 'b20', but the 2 netlist from 'b14'
+are generated with different parameters used during the synthesis.
+<P>
+<B>B22</B>
+<P>
+'b22' is like 'b20' but it contains 3 processes 'b14'.
+<P>
+<HR>
+<P>
+Each benchmark is delivered as RTL level VHDL and gate level EDIF.
+<P>
+A presentation on the benchmarks can be found <A href="http://www.cerc.utexas.edu/itc99-benchmarks/polibench.pdf"> here</A>.
+<P>
+The benchmarks are available directly from <A href="http://www.cad.polito.it/tools/#bench"> their website</A>, and will be mirrored at the ITC99 website.
+<P>
+Status:
+<P>
+These benchmarks are ready for use.  I have run one as an experiment
+on a commercial ATPG with good results.
+<P>
+<HR>
+
+<H3> I99S<N> - RTL Versions of ISCAS85 and ISCAS89 benchmarks from University of
+Michigan:</H3>
+<P>
+Mark Hansen, when at the University of Michigan, derived RTL versions
+of some of the ISCAS benchmarks.  These can be found at <A href="http://www.eecs.umich.edu/~mhansen/imodels/ISCAS_HLM.html"> their website</A>.
+<P>
+There are now 4 high level combinational benchmarks and three high
+level sequential benchmarks, s208.1, s298 and s344/s349.
+<P>
+They have all the flaws of the original benchmarks - single clock,
+simple, and unrealistic, but are useful in comparing high level and
+gate level ATPG, and in testing algorithms.
+<P>
+Status:  Ready to download.
+<P>
+<HR>
+<P>
+<H3>I99C1 - An interesting combinational benchmark:</H3>
+<P>
+This benchmark is extracted from an industrial design, and is said to
+cause problems for industrial ATPGs.  
+<P>
+The netlist is provided as gate level Verilog, using a generic
+library.  A set of vectors is also provided.
+<P>
+Status:
+<P>
+I have run the circuit on an industrial ATPG, getting very low fault
+coverage.  I have not yet verified my ATPG library with the provided
+vectors, so the low fault coverage might be a bug.  I hope to do this
+by the time of the release, but others are welcome to help.
+<P>
+<A href="http://www.cerc.utexas.edu/itc99-benchmarks/bench.html">Home</A>
+
+
+
+</P></PRE></PRE></BODY></HTML>
